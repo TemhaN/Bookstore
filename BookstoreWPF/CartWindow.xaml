@@ -1,0 +1,64 @@
+﻿<Window x:Class="BookstoreWPF.CartWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Корзина" Height="400" Width="600" WindowStartupLocation="CenterScreen"
+        Background="#F5E9D8">
+    <Window.Resources>
+        <DropShadowEffect x:Key="MaterialDesignShadow" BlurRadius="20" ShadowDepth="5" Direction="315" Color="#805A3B" Opacity="0.3"/>
+    </Window.Resources>
+    <Border BorderBrush="#C4A484" BorderThickness="1" CornerRadius="20" Margin="15" Background="#FFF8F0" Effect="{StaticResource MaterialDesignShadow}">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl x:Name="CartItemsGrid">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="#F5E9D8" CornerRadius="15" Margin="0,0,0,10" Padding="10" Effect="{StaticResource MaterialDesignShadow}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Название}" FontSize="14" Foreground="#5A3B2F" FontFamily="Georgia" TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding Цена, StringFormat={}{0:F2} руб.}" FontSize="12" Foreground="#8D552F" FontFamily="Georgia" Margin="0,5,0,0"/>
+                                    </StackPanel>
+                                    <TextBlock Grid.Column="1" Text="{Binding Количество, StringFormat=Кол-во: {0}}" FontSize="12" Foreground="#8D552F" FontFamily="Georgia" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+                <TextBlock x:Name="TotalAmountText" FontSize="16" Foreground="#5A3B2F" FontFamily="Georgia" VerticalAlignment="Center" Margin="0,0,20,0"/>
+                <Button Content="Оформить заказ" Click="Checkout_Click" Background="#D9C2A7" Foreground="#FFF8F0" Padding="15,8" FontSize="14" FontFamily="Georgia" Width="150" Height="25">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}" BorderThickness="0" CornerRadius="15">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#C4A484"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,11 @@
+﻿<Window x:Class="BookstoreWPF.OrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Оформление заказа" Height="200" Width="300">
+    <Grid>
+        <StackPanel Margin="10">
+            <Label Content="Подтвердите заказ:"/>
+            <Button Content="Оформить" Click="PlaceOrder_Click" Margin="0,10,0,0"/>
+        </StackPanel>
+    </Grid>
+</Window>
